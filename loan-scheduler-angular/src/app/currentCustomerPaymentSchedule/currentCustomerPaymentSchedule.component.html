@@ -1,0 +1,69 @@
+<table class="table ">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">S.No</th>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Payment ID</th>
+      <th scope="col">Balance Amount</th>
+      <th scope="col">Projected Interest</th>
+      <th scope="col">Payment Date</th>
+      <th scope="col">Payement Status</th>
+      <th scope="col">Amount to be Paid</th>
+      <th scope="col">Payment Button</th>
+
+    </tr>
+  </thead>
+  <tbody style="border: 1px solid;">
+    <tr *ngFor=" let item of currentCustomerPaymentData|paginate:{itemsPerPage:12,currentPage:p};let i=index">
+      <td>{{i+1}}</td>
+      <td>{{item.customerName}}</td>
+      <td>{{item.paymentID}}</td>
+      <td>{{item.principalAmount | currency:'INR':true}}</td>
+      <td>{{item.projectedInterest | currency:'INR':true}}</td>
+      <td>{{item.paymentDate | date: 'dd-MM-yyyy'}}</td>
+      <td style="text-align: center;"><span [ngClass]="{
+          'badge':true,
+          'badge-pill':true,
+          'badge-success':item.paymentStatus==='PAID',
+          'badge-danger':item.paymentStatus==='AWAITINGPAYMENT',
+          'badge-warning':item.paymentStatus==='PROJECTED'
+        }" style="padding: 8px;">{{item.paymentStatus}}</span></td>
+
+      <td>{{item.paymentAmount | currency:'INR':true}}</td>
+
+      <td>
+
+
+        <!-- <button class=" btn btn-success" (click)="onConfirmPaid(item)"
+          [disabled]="!(item.paymentStatus === 'AWAITINGPAYMENT')">Pay
+        </button> -->
+
+        <button class=" btn btn-success" (click)="onConfirmPaid(item)"
+          [disabled]="!(item.paymentStatus === 'AWAITINGPAYMENT')">
+
+          <span [hidden]="!(item.paymentStatus === 'PROJECTED')">Pay</span>
+          <span [hidden]="!(item.paymentStatus === 'AWAITINGPAYMENT')">Pay</span>
+          <span [hidden]="!((item.paymentStatus === 'PAID')) " style="font-weight: bold;
+          color:black"><i class='fa fa-check-circle' style='color:green; font-size: larger;'></i> Paid
+            Sucessfully</span>
+
+        </button>
+
+
+
+
+
+
+      </td>
+
+
+
+    </tr>
+  </tbody>
+</table>
+<button (click)="onGoBack()" class="btn btn-info">Go Back</button>
+<div class="pageAlign">
+
+  <pagination-controls (pageChange)=" p=$event">
+  </pagination-controls>
+</div>

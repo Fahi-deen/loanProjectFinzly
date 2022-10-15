@@ -1,0 +1,145 @@
+<div style="margin-top: 80px;">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="card m-3 bg-info">
+        <h5 class="card-header text-center">Loan Creation </h5>
+        <div class=" card-body">
+          <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && submit()" novalidate>
+            <!-- Customer Name and loan Amount -->
+            <div class="form-row">
+
+              <div class="form-group col-6">
+                <label>Customer Name</label>
+                <input type="text" name="customerName" pattern="[A-Za-z ]{1,32}" [(ngModel)]="formdata.customerName"
+                  placeholder="Enter the Customer Name" class="form-control" required #customer_name="ngModel"
+                  [ngClass]="{'is-invalid':f.submitted && customer_name.invalid  }" />
+                <div class="invalid-feedback">
+                  <div *ngIf="customer_name.errors?.required">Customer Name is required</div>
+                  <div *ngIf="customer_name.errors?.pattern">only Alphabet is accepted</div>
+                </div>
+              </div>
+              <div class=" form-group col-6">
+                <label>Loan Amount</label>
+                <input type="number" min=1 name="loanAmount" [(ngModel)]="formdata.loanAmount" class="form-control"
+                  placeholder="Enter the Loan Amount" required #loan_Amount="ngModel"
+                  [ngClass]="{'is-invalid':f.submitted && loan_Amount.invalid  }" />
+                <div class="invalid-feedback">
+                  <div *ngIf="loan_Amount.errors?.min">
+                    Enter Postive Value
+                  </div>
+                  <div *ngIf="loan_Amount.errors?.required">Loan Amount is required</div>
+                </div>
+              </div>
+            </div>
+            <!-- Loan Start Date and Payment Frequency -->
+            <div class="form-row">
+              <div class=" form-group col-6">
+                <label>Loan StartDate</label>
+                <input type="number" min=0 name="loanStartDate" [(ngModel)]="formdata.loanStartDate"
+                  class="form-control" placeholder="Enter in Days" required #loan_StartDate="ngModel"
+                  [ngClass]="{'is-invalid':f.submitted && loan_StartDate.invalid  }" />
+                <div class="invalid-feedback">
+                  <div *ngIf="loan_StartDate.errors?.min">
+                    Cannot Accept negative value
+                  </div>
+                  <div *ngIf="loan_StartDate.errors?.required">Loan StartDate is required</div>
+                </div>
+              </div>
+              <div class="form-group col-6">
+                <!-- Monthly, Quarterly,Half Yearly -->
+                <label>Payment Frequency</label>
+                <select name="paymentFrequency" [(ngModel)]="formdata.paymentFrequency" class="form-control"
+                  #payment_freqeuncy="ngModel"
+                  [ngClass]="{'is-invalid':f.submitted && payment_freqeuncy.invalid ,'is-valid':f.submitted && payment_freqeuncy.valid }"
+                  required>
+                  <!-- <option value="" ng-readonly>Choose principle</option> -->
+                  <option value=1 selected>Monthly</option>
+                  <option value=3>Quarterly</option>
+                  <option value=6>Half Yearly</option>
+                  <option value=12>Yearly</option>
+
+                </select>
+                <div class="invalid-feedback">
+                  <div>Payment Term is required</div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="form-row">
+
+              <div class=" form-group col">
+                <label>Interest Rate Percentage</label>
+                <input type="number" min=1 name="interestRate" [(ngModel)]="formdata.interestRate" class="form-control"
+                  placeholder="Enter the Interest Rate" required #interest_Rate="ngModel"
+                  [ngClass]="{'is-invalid':f.submitted && interest_Rate.invalid  }" />
+                <div class="invalid-feedback">
+                  <div *ngIf="interest_Rate.errors?.min">
+                    Cannot Accept Interest rate less than 1
+                  </div>
+                  <div *ngIf="interest_Rate.errors?.required">Interest Rate is required</div>
+                </div>
+              </div>
+              <div class=" form-group col">
+                <label>Loan Repayment Duration</label>
+                <input type="number" min=1 name="noOfMonths" [(ngModel)]="formdata.noOfMonths" class="form-control"
+                  placeholder="Enter in months" required #no_of_months="ngModel"
+                  [ngClass]="{'is-invalid':f.submitted && no_of_months.invalid  }" />
+                <div class="invalid-feedback">
+                  <div *ngIf="no_of_months.errors?.min">
+                    Cannot Accept month less than 1
+                  </div>
+                  <div *ngIf="no_of_months.errors?.required">
+                    Loan Repayment months is required</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col">
+                <label>Payment Term</label>
+                <select name="paymentTerm" [(ngModel)]="formdata.paymentTerm" class="form-control"
+                  #payment_Term="ngModel"
+                  [ngClass]="{'is-invalid':f.submitted && payment_Term.invalid ,'is-valid':f.submitted && payment_Term.valid }"
+                  required>
+                  <!-- <option value="" ng-readonly>Choose principle</option> -->
+                  <option value="EVEN_PRINCIPLE" selected>Even Principle</option>
+                  <option value="INTEREST_ONLY">Interest Only</option>
+
+                </select>
+                <div class="invalid-feedback">
+                  <div>Payment Term is required</div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <!-- Terms and Condition -->
+            <!-- <div class="form-group form-check">
+            <input type="checkbox" name="acceptTerms" [(ngModel)]="formdata.accept_terms" id="acceptTerms"
+              class="form-check-input" required #agree_terms="ngModel"
+              [ngClass]="{'is-invalid':f.submitted && agree_terms.invalid  }" />
+            <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
+            <div class="invalid-feedback">
+              Accept Ts & Cs is required
+            </div>
+          </div> -->
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary me-2">
+                Create Loan
+              </button>
+              <button class="btn btn-danger" type="reset" routerLink="/dashboard">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>

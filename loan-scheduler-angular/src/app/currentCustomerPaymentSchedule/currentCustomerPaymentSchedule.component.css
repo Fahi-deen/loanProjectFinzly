@@ -1,0 +1,15 @@
+.pagination-display {
+  text-align: center;
+  margin-top: 11px;
+}
+.pageAlign {
+  display: flex; /* establish flex container */
+  flex-direction: column; /* make main axis vertical */
+  justify-content: center; /* center items vertically, in this case */
+  align-items: center; /* center items horizontally, in this case */
+  height: auto;
+}
+.btn-info {
+  float: right;
+  margin-right: 20px;
+}
