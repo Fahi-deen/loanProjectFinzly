@@ -44,7 +44,7 @@ public class CustomerServiceImpl {
 		customer.setInterestRate(customerInterestRate);
 
 		if (userDetails.getPaymentTerm().equals(PaymentTerm.INTEREST_ONLY)) {
-			customer.setPaymentSchedule(interestPaymentScheduler(userDetails, customerLoanStartDate));
+			customer.setPaymentSchedule(interestOnlyPaymentCalculator(userDetails, customerLoanStartDate));
 		} else {
 			List<PaymentSchedule> paymentlistCalculated = evenPaymentFrequencyCalculator(userDetails,
 					customerLoanStartDate);
@@ -55,16 +55,14 @@ public class CustomerServiceImpl {
 
 	}
 
-	private List<PaymentSchedule> interestPaymentScheduler(CustomerPaymentDTO customer, LocalDate loanStartDate) {
+	private List<PaymentSchedule> interestOnlyPaymentCalculator(CustomerPaymentDTO customer, LocalDate loanStartDate) {
 		List<PaymentSchedule> paymentList = new ArrayList<>();
 		float principalAmount = customer.getLoanAmount();
 		int installment = (customer.getNoOfMonths() / customer.getPaymentFrequency());
-		float numberOfYears = customer.getNoOfMonths() / 12;
 		float rate = customer.getInterestRate();
 		LocalDate paymentDate = null;
 		PaymentStatus paymentStatus;
-
-		float projectedInterest = ((principalAmount * numberOfYears * rate) / 100) / installment;
+		float projectedInterest = ((principalAmount* rate) / 100) / 12;
 		for (int i = 0; i < installment; i++) {
 			paymentStatus = PaymentStatus.PROJECTED;
 			if (i == 0) {
@@ -75,7 +73,7 @@ public class CustomerServiceImpl {
 				paymentList.add(new PaymentSchedule(paymentDate, principalAmount, projectedInterest, paymentStatus,
 						(principalAmount + projectedInterest), customer.getCustomerName()));
 			} else
-				paymentList.add(new PaymentSchedule(paymentDate, principalAmount, projectedInterest, paymentStatus,
+				paymentList.add(new PaymentSchedule(paymentDate, 0f, projectedInterest, paymentStatus,
 						projectedInterest, customer.getCustomerName()));
 		}
 		return paymentList;
@@ -117,7 +115,7 @@ public class CustomerServiceImpl {
 
 	public PaymentSchedule updatePaymentStatus(PaymentSchedule paidCustomer) {
 		PaymentSchedule foundPayment = paymentScheduleRepository.findById(paidCustomer.getPaymentID()).get();
-
+		
 		foundPayment.setPaymentStatus(PaymentStatus.PAID);
 		return paymentScheduleRepository.save(foundPayment);
 
