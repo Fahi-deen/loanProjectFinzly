@@ -36,9 +36,9 @@
             <div class="form-row">
               <div class=" form-group col-6">
                 <label>Loan StartDate</label>
-                <input type="number" min=0 name="loanStartDate" [(ngModel)]="formdata.loanStartDate"
-                  class="form-control" placeholder="Enter in Days" required #loan_StartDate="ngModel"
-                  [ngClass]="{'is-invalid':f.submitted && loan_StartDate.invalid  }" />
+                <input type="date" min=0 name="loanStartDate" [(ngModel)]="formdata.loanStartDate" class="form-control"
+                  (keydown)="disableDate()" placeholder="Enter in Days" required #loan_StartDate="ngModel"
+                  [ngClass]="{'is-invalid':f.submitted && loan_StartDate.invalid  }" [min]="getToday()" />
                 <div class="invalid-feedback">
                   <div *ngIf="loan_StartDate.errors?.min">
                     Cannot Accept negative value
@@ -84,7 +84,7 @@
               </div>
               <div class=" form-group col">
                 <label>Loan Repayment Duration</label>
-                <input type="number" min=1 name="noOfMonths" [(ngModel)]="formdata.noOfMonths" class="form-control"
+                <input type="number" name="noOfMonths" [(ngModel)]="formdata.noOfMonths" class="form-control"
                   placeholder="Enter in months" required #no_of_months="ngModel"
                   [ngClass]="{'is-invalid':f.submitted && no_of_months.invalid  }" />
                 <div class="invalid-feedback">

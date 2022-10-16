@@ -8,6 +8,8 @@ export class CustomerService {
   private baseUrl = 'http://localhost:8080/';
   constructor(private http: HttpClient) {}
   createLoan(data: any) {
+    console.log(data);
+
     return this.http.post(`${this.baseUrl}createloan`, data);
   }
   getAllLoans() {

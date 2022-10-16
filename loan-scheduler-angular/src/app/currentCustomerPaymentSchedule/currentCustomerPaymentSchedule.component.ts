@@ -28,8 +28,6 @@ export class CurrentCustomerPaymentScheduleComponent implements OnInit {
       this.service
         .currentCustomerPaymentDetails(param.get('id'))
         .subscribe((res: any) => {
-          console.log(res);
-
           this.currentCustomerPaymentData = res;
         });
     });
@@ -45,9 +43,7 @@ export class CurrentCustomerPaymentScheduleComponent implements OnInit {
       confirmButtonText: 'Yes, Pay!',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.service.updatePaymentStatus(item).subscribe((res) => {
-          console.log(res);
-        });
+        this.service.updatePaymentStatus(item).subscribe((res) => {});
         Swal.fire('Sucess!', 'Your Payment is Accepted.', 'success').then(
           (): any => {
             window.location.reload();

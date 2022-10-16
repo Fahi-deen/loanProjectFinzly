@@ -24,13 +24,9 @@ export class DisplayAllLoansComponent implements OnInit {
   onDisplayDetails() {
     this.service.getAllLoans().subscribe((data: any) => {
       this.allLoanData = data;
-      console.log(this.allLoanData);
     });
   }
   currentPaymentDetails(item: any) {
-    console.log(item);
-    // this.service.checkCurrentDate(item.customerID);
-
     this.router.navigate(['/current', item.customerID]);
   }
 
