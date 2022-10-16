@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,18 +17,19 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;
 
+import com.loan.enumeration.PaymentTerm;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
+
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+
 @Table(name = "customer_details")
 public class CustomerDetails {
 	@Id
@@ -43,10 +46,12 @@ public class CustomerDetails {
 	@NotNull
 	private LocalDate maturityDate;
 	@NotNull
+	@Enumerated(EnumType.STRING)
+	private PaymentTerm paymentTerm;
+	@NotNull
 	private Integer paymentFrequency;
 	@NotNull
 	private Float interestRate;
-
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<PaymentSchedule> paymentSchedule;
 }

@@ -15,7 +15,6 @@ import lombok.Data;
 
 @Entity
 @Data
-
 public class PaymentSchedule {
 
 	@Id

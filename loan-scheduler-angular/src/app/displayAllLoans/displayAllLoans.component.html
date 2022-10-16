@@ -1,6 +1,6 @@
-<table class="table ">
+<table class="table fluid-container">
   <thead class="thead-dark">
-    <tr>
+    <tr style="text-align: center">
 
       <th scope="col">S.No</th>
       <th scope="col">Customer Name</th>
@@ -13,15 +13,16 @@
     </tr>
   </thead>
   <tbody style="border: 1px solid;">
-    <tr *ngFor=" let item of allLoanData|paginate:{itemsPerPage:10,currentPage:p};let i=index">
+    <tr *ngFor=" let item of allLoanData|paginate:{itemsPerPage:10,currentPage:p};let i=index"
+      style="text-align: center">
 
       <td>{{i+1}}</td>
       <td>{{item.customerName}}</td>
-      <td>{{item.loanAmount | currency:'INR':true}}</td>
+      <td>{{item.loanAmount | currency:'INR'}}</td>
       <td>{{item.tradeDate| date: 'dd-MM-yyyy'}}</td>
       <td>{{item.loanStartDate| date: 'dd-MM-yyyy'}}</td>
       <td>{{item.maturityDate | date: 'dd-MM-yyyy'}}</td>
-      <td>{{item.paymentFrequency}}</td>
+      <td>{{item.paymentTerm.replace('_', ' ')| titlecase }}</td>
       <td>
         <button class="btn btn-info" (click)="currentPaymentDetails(item)">Click here</button>
       </td>

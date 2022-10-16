@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 import { CustomerService } from '../services/customer.service';
 
@@ -33,10 +34,26 @@ export class CurrentCustomerPaymentScheduleComponent implements OnInit {
     });
   }
   onConfirmPaid(item: any) {
-    this.service.updatePaymentStatus(item).subscribe((res) => {
-      console.log(res);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `Your are paying Rs ${item.paymentAmount.toFixed(2)}`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Pay!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.updatePaymentStatus(item).subscribe((res) => {
+          console.log(res);
+        });
+        Swal.fire('Sucess!', 'Your Payment is Accepted.', 'success').then(
+          (): any => {
+            window.location.reload();
+          }
+        );
+      }
     });
-    window.location.reload();
   }
 
   onGoBack() {

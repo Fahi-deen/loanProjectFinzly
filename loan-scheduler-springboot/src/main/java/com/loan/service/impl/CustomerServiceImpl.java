@@ -29,6 +29,7 @@ public class CustomerServiceImpl {
 		Float customerLoanAmount = userDetails.getLoanAmount();
 		LocalDate customerTradeDate = LocalDate.now();
 		LocalDate customerLoanStartDate = LocalDate.now().plusDays(userDetails.getLoanStartDate());
+		PaymentTerm paymentTerm=userDetails.getPaymentTerm();
 		LocalDate customerMaturityDate = customerLoanStartDate.plusMonths(userDetails.getNoOfMonths());
 		Integer customerPaymentFrequency = userDetails.getPaymentFrequency();
 		Float customerInterestRate = userDetails.getInterestRate();
@@ -38,6 +39,7 @@ public class CustomerServiceImpl {
 		customer.setTradeDate(customerTradeDate);
 		customer.setLoanStartDate(customerLoanStartDate);
 		customer.setMaturityDate(customerMaturityDate);
+		customer.setPaymentTerm(paymentTerm);
 		customer.setPaymentFrequency(customerPaymentFrequency);
 		customer.setInterestRate(customerInterestRate);
 

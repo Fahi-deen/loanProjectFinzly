@@ -19,10 +19,15 @@ export class CreateLoanComponent implements OnInit {
 
   ngOnInit() {
     // document.body.style.backgroundColor = '#87CEFA';
+    document.body.className = 'sandal_bg';
   }
   submit() {
     this.service.createLoan(this.formdata).subscribe((data) => {
-      this.toastr.success('Loan Created Sucessfully', '');
+      this.toastr.success('Loan Created Sucessfully', '', {
+        progressBar: true,
+        closeButton: true,
+        positionClass: 'toast-top-right',
+      });
       this.router.navigate(['dashboard']);
     });
   }

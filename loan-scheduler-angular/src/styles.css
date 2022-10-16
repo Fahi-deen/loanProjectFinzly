@@ -6,3 +6,8 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
 }
+.sandal_bg {
+  background-image: url(../src/assets/sandal.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}

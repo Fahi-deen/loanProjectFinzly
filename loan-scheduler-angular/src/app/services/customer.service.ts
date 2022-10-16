@@ -17,9 +17,6 @@ export class CustomerService {
     return this.http.get(`${this.baseUrl}current/${id}`);
   }
 
-  // checkCurrentDate(id: any) {
-  //   return this.http.put(`${this.baseUrl}checkCurrentPaymentDate`, 'id');
-  // }
   updatePaymentStatus(payment: any) {
     console.log(payment);
 

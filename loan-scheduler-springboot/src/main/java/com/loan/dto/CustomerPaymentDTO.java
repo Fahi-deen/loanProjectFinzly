@@ -2,7 +2,6 @@ package com.loan.dto;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.validation.constraints.NotNull;
 
 import com.loan.enumeration.PaymentTerm;
 

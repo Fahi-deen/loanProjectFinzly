@@ -23,8 +23,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		Throwable mostSpecificCause = ex.getMostSpecificCause();
 		ErrorDetails errorMessage;
 		if (mostSpecificCause != null) {
-//			String exceptionName = mostSpecificCause.getClass().getName();
-
 			String message = mostSpecificCause.getMessage();
 			errorMessage = new ErrorDetails(new Date(), message, request.getDescription(false));
 		} else {
@@ -32,7 +30,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		}
 		return new ResponseEntity<Object>(errorMessage, headers, status);
 	}
-	
 
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,

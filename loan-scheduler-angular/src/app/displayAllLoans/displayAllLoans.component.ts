@@ -18,6 +18,7 @@ export class DisplayAllLoansComponent implements OnInit {
   currentPaymentScheduleData: any = [];
   p: number = 1;
   ngOnInit() {
+    document.body.className = 'sandal_bg';
     this.onDisplayDetails();
   }
   onDisplayDetails() {

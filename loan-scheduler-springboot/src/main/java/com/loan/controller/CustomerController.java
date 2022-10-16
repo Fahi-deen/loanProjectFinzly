@@ -3,10 +3,6 @@ package com.loan.controller;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.validation.Valid;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,13 +20,13 @@ import com.loan.service.impl.CustomerServiceImpl;
 @RestController("/api")
 @CrossOrigin(origins = "http://localhost:4200/")
 public class CustomerController {
-	Logger logger = LoggerFactory.getLogger(CustomerController.class);
+
 	@Autowired
 	private CustomerServiceImpl customerService;
 
 	@PostMapping("/createloan")
-	public CustomerDetails createLoan( @RequestBody CustomerPaymentDTO customerDetails) {
-		
+	public CustomerDetails createLoan(@RequestBody CustomerPaymentDTO customerDetails) {
+		;
 		return customerService.createLoan(customerDetails);
 	}
 
@@ -44,7 +40,6 @@ public class CustomerController {
 		return customerService.CurrentCustomerPaymentDetails(id);
 
 	}
-
 
 	@PutMapping("/updatePaymentStatus")
 	public HashMap<String, String> updatePaymentStatus(@RequestBody PaymentSchedule payment) {
