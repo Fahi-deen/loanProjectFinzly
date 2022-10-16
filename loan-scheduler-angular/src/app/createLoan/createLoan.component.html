@@ -11,11 +11,12 @@
 
               <div class="form-group col-6">
                 <label>Customer Name</label>
-                <input type="text" name="customerName" pattern="[A-Za-z ]{1,32}" [(ngModel)]="formdata.customerName"
+                <input type="text" name="customerName" pattern="[A-Za-z ]{4,32}" [(ngModel)]="formdata.customerName"
                   placeholder="Enter the Customer Name" class="form-control" required #customer_name="ngModel"
-                  [ngClass]="{'is-invalid':f.submitted && customer_name.invalid  }" />
+                  [ngClass]="{'is-invalid':f.submitted && customer_name.invalid ,'is-valid':f.submitted && customer_name.valid }" />
                 <div class="invalid-feedback">
                   <div *ngIf="customer_name.errors?.required">Customer Name is required</div>
+                  <div *ngIf="customer_name.errors?.min">Customer Name should have atleast 4 letters</div>
                   <div *ngIf="customer_name.errors?.pattern">only Alphabet is accepted</div>
                 </div>
               </div>
@@ -23,7 +24,7 @@
                 <label>Loan Amount</label>
                 <input type="number" min=1 name="loanAmount" [(ngModel)]="formdata.loanAmount" class="form-control"
                   placeholder="Enter the Loan Amount" required #loan_Amount="ngModel"
-                  [ngClass]="{'is-invalid':f.submitted && loan_Amount.invalid  }" />
+                  [ngClass]="{'is-invalid':f.submitted && loan_Amount.invalid ,'is-valid':f.submitted && loan_Amount.valid  }" />
                 <div class="invalid-feedback">
                   <div *ngIf="loan_Amount.errors?.min">
                     Enter Postive Value
@@ -37,8 +38,9 @@
               <div class=" form-group col-6">
                 <label>Loan StartDate</label>
                 <input type="date" min=0 name="loanStartDate" [(ngModel)]="formdata.loanStartDate" class="form-control"
-                  (keydown)="disableDate()" placeholder="Enter in Days" required #loan_StartDate="ngModel"
-                  [ngClass]="{'is-invalid':f.submitted && loan_StartDate.invalid  }" [min]="getToday()" />
+                  (keydown)="disableDate()" required #loan_StartDate="ngModel"
+                  [ngClass]="{'is-invalid':f.submitted && loan_StartDate.invalid,'is-valid':f.submitted && loan_StartDate.valid  }"
+                  [min]="getToday()" />
                 <div class="invalid-feedback">
                   <div *ngIf="loan_StartDate.errors?.min">
                     Cannot Accept negative value
@@ -74,7 +76,7 @@
                 <label>Interest Rate Percentage</label>
                 <input type="number" min=1 name="interestRate" [(ngModel)]="formdata.interestRate" class="form-control"
                   placeholder="Enter the Interest Rate" required #interest_Rate="ngModel"
-                  [ngClass]="{'is-invalid':f.submitted && interest_Rate.invalid  }" />
+                  [ngClass]="{'is-invalid':f.submitted && interest_Rate.invalid,'is-valid':f.submitted && interest_Rate.valid  }" />
                 <div class="invalid-feedback">
                   <div *ngIf="interest_Rate.errors?.min">
                     Cannot Accept Interest rate less than 1
@@ -84,15 +86,30 @@
               </div>
               <div class=" form-group col">
                 <label>Loan Repayment Duration</label>
-                <input type="number" name="noOfMonths" [(ngModel)]="formdata.noOfMonths" class="form-control"
-                  placeholder="Enter in months" required #no_of_months="ngModel"
-                  [ngClass]="{'is-invalid':f.submitted && no_of_months.invalid  }" />
+                <select type="number" name="noOfMonths" [(ngModel)]="formdata.noOfMonths" class="form-control" required
+                  #no_of_months="ngModel"
+                  [ngClass]="{'is-invalid':f.submitted && no_of_months.invalid ,'is-valid':f.submitted && no_of_months.valid  }">
+                  <option value="1" selected>1 Year</option>
+                  <option value="2" selected>2 Year</option>
+                  <option value="3" selected>3 Year</option>
+                  <option value="4" selected>4 Year</option>
+                  <option value="5" selected>5 Year</option>
+                  <option value="6" selected>6 Year</option>
+                  <option value="7" selected>7 Year</option>
+                  <option value="8" selected>8 Year</option>
+                  <option value="9" selected>9 Year</option>
+                  <option value="10" selected>10 Year</option>
+
+
+
+                </select>
+
                 <div class="invalid-feedback">
                   <div *ngIf="no_of_months.errors?.min">
-                    Cannot Accept month less than 1
+                    Cannot Accept Year less than 1
                   </div>
                   <div *ngIf="no_of_months.errors?.required">
-                    Loan Repayment months is required</div>
+                    Loan Repayment Years is required</div>
                 </div>
               </div>
             </div>

@@ -31,7 +31,7 @@ export class CreateLoanComponent implements OnInit {
     return false;
   }
   submit() {
-    // this.formdata.tradeDate = new Date();
+    this.formdata.customerName = this.formdata.customerName.trim();
     this.formdata.maturityDate = new Date(
       new Date().setMonth(new Date().getMonth() + this.formdata.noOfMonths)
     );
