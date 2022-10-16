@@ -1,6 +1,7 @@
 package com.loan.model;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,16 +15,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Range;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.loan.enumeration.PaymentTerm;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
 import lombok.NoArgsConstructor;
-
 
 @Entity
 @Data
@@ -35,18 +37,22 @@ public class CustomerDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long customerID;
+	@Pattern(regexp = "^[a-zA-Z]{4,}(?: [a-zA-Z]+){0,}$", message = "Invalid Customer Name.."
+			+ " Enter only Letters and Spaces and minimum length should 4..." + "name must end with space")
 	@NotEmpty
 	private String customerName;
 	@NotNull
 	@Range(min = 1, message = "length must be above 0")
 	private Float loanAmount;
-	private LocalDate TradeDate;
+	@CreationTimestamp
+	private Date tradeDate;
 	@NotNull
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate loanStartDate;
 	@NotNull
 	private LocalDate maturityDate;
-	@NotNull
 	@Enumerated(EnumType.STRING)
+	@NotNull
 	private PaymentTerm paymentTerm;
 	@NotNull
 	private Integer paymentFrequency;

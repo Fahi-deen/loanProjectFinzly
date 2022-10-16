@@ -7,36 +7,35 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.loan.dto.CustomerPaymentDTO;
 import com.loan.enumeration.PaymentStatus;
 import com.loan.enumeration.PaymentTerm;
 import com.loan.model.CustomerDetails;
 import com.loan.model.PaymentSchedule;
 import com.loan.repository.CustomerDetailsRepository;
 import com.loan.repository.PaymentScheduleRepository;
+import com.loan.service.CustomerService;
 
 @Service
-public class CustomerServiceImpl {
+public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	private CustomerDetailsRepository customerDetailsRepository;
 	@Autowired
 	private PaymentScheduleRepository paymentScheduleRepository;
 
-	public CustomerDetails createLoan(CustomerPaymentDTO userDetails) {
+	@Override
+	public CustomerDetails createLoan(CustomerDetails userDetails) {
 		CustomerDetails customer = new CustomerDetails();
 
 		String customerName = userDetails.getCustomerName().trim();
 		Float customerLoanAmount = userDetails.getLoanAmount();
-		LocalDate customerTradeDate = LocalDate.now();
-		LocalDate customerLoanStartDate = LocalDate.now().plusDays(userDetails.getLoanStartDate());
-		PaymentTerm paymentTerm=userDetails.getPaymentTerm();
-		LocalDate customerMaturityDate = customerLoanStartDate.plusMonths(userDetails.getNoOfMonths());
+		LocalDate customerLoanStartDate = userDetails.getLoanStartDate();
+		PaymentTerm paymentTerm = userDetails.getPaymentTerm();
+		LocalDate customerMaturityDate = userDetails.getMaturityDate();
 		Integer customerPaymentFrequency = userDetails.getPaymentFrequency();
 		Float customerInterestRate = userDetails.getInterestRate();
 
 		customer.setCustomerName(customerName);
 		customer.setLoanAmount(customerLoanAmount);
-		customer.setTradeDate(customerTradeDate);
 		customer.setLoanStartDate(customerLoanStartDate);
 		customer.setMaturityDate(customerMaturityDate);
 		customer.setPaymentTerm(paymentTerm);
@@ -44,29 +43,31 @@ public class CustomerServiceImpl {
 		customer.setInterestRate(customerInterestRate);
 
 		if (userDetails.getPaymentTerm().equals(PaymentTerm.INTEREST_ONLY)) {
-			customer.setPaymentSchedule(interestOnlyPaymentCalculator(userDetails, customerLoanStartDate));
+			customer.setPaymentSchedule(interestOnlyPaymentCalculator(customer));
 		} else {
-			List<PaymentSchedule> paymentlistCalculated = evenPaymentFrequencyCalculator(userDetails,
-					customerLoanStartDate);
+			List<PaymentSchedule> paymentlistCalculated = evenPaymentFrequencyCalculator(customer);
 			customer.setPaymentSchedule(paymentlistCalculated);
 		}
+		
 
 		return customerDetailsRepository.save(customer);
 
 	}
 
-	private List<PaymentSchedule> interestOnlyPaymentCalculator(CustomerPaymentDTO customer, LocalDate loanStartDate) {
+	private List<PaymentSchedule> interestOnlyPaymentCalculator(CustomerDetails customer) {
 		List<PaymentSchedule> paymentList = new ArrayList<>();
 		float principalAmount = customer.getLoanAmount();
-		int installment = (customer.getNoOfMonths() / customer.getPaymentFrequency());
+		int noOfMonths = (customer.getMaturityDate().getYear() - customer.getLoanStartDate().getYear()) * 12;
+		int installment = (noOfMonths / customer.getPaymentFrequency());
 		float rate = customer.getInterestRate();
 		LocalDate paymentDate = null;
+
 		PaymentStatus paymentStatus;
-		float projectedInterest = ((principalAmount* rate) / 100) / 12;
+		float projectedInterest = ((principalAmount * rate) / 100) / 12;
 		for (int i = 0; i < installment; i++) {
 			paymentStatus = PaymentStatus.PROJECTED;
 			if (i == 0) {
-				paymentDate = loanStartDate.plusMonths(customer.getPaymentFrequency());
+				paymentDate = customer.getLoanStartDate().plusMonths(customer.getPaymentFrequency());
 			} else
 				paymentDate = paymentDate.plusMonths(customer.getPaymentFrequency());
 			if (i == installment - 1) {
@@ -79,14 +80,15 @@ public class CustomerServiceImpl {
 		return paymentList;
 	}
 
-	private List<PaymentSchedule> evenPaymentFrequencyCalculator(CustomerPaymentDTO customer, LocalDate loanStartDate) {
+	private List<PaymentSchedule> evenPaymentFrequencyCalculator(CustomerDetails customer) {
 		List<PaymentSchedule> paymentList = new ArrayList<>();
-		float numberOfYears = customer.getNoOfMonths() / 12;
-		int installment = (customer.getNoOfMonths() / customer.getPaymentFrequency());
+		int noOfMonths = (customer.getMaturityDate().getYear() - customer.getLoanStartDate().getYear()) * 12;
+		float numberOfYears = noOfMonths / 12;
+		int installment = (noOfMonths / customer.getPaymentFrequency());
 		float principalAmount = customer.getLoanAmount();
 		float defaultPaymentAmount = (principalAmount / installment);
 		float paymentAmount;
-		LocalDate evenLocalDate = loanStartDate;
+		LocalDate evenLocalDate = customer.getLoanStartDate();
 		float projectedInterest;
 		PaymentStatus paymentStatus;
 		LocalDate paymentDate = null;
@@ -108,19 +110,22 @@ public class CustomerServiceImpl {
 		return paymentList;
 	}
 
+	@Override
 	public List<CustomerDetails> displayAllLoans() {
 		List<CustomerDetails> allLoansData = customerDetailsRepository.findAll();
 		return allLoansData;
 	}
 
+	@Override
 	public PaymentSchedule updatePaymentStatus(PaymentSchedule paidCustomer) {
 		PaymentSchedule foundPayment = paymentScheduleRepository.findById(paidCustomer.getPaymentID()).get();
-		
+
 		foundPayment.setPaymentStatus(PaymentStatus.PAID);
 		return paymentScheduleRepository.save(foundPayment);
 
 	}
 
+	@Override
 	public List<PaymentSchedule> CurrentCustomerPaymentDetails(Long id) {
 		CustomerDetails currentCustomerList = customerDetailsRepository.findById(id).get();
 		return checkCurrentPaymentDay(currentCustomerList.getPaymentSchedule());
