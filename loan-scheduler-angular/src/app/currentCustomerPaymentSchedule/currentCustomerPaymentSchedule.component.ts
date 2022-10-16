@@ -20,6 +20,7 @@ export class CurrentCustomerPaymentScheduleComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    document.body.className = 'sandal_bg';
     this.displayCurrentDetails();
   }
   displayCurrentDetails() {
