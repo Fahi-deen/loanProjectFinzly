@@ -14,6 +14,7 @@ export class DisplayAllLoansComponent implements OnInit {
 
     private router: Router
   ) {}
+  searchText: any;
   allLoanData: any;
   currentPaymentScheduleData: any = [];
   p: number = 1;

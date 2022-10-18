@@ -11,6 +11,7 @@ import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
 import { CreateLoanComponent } from './createLoan/createLoan.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CurrentCustomerPaymentScheduleComponent } from './currentCustomerPaymentSchedule/currentCustomerPaymentSchedule.component';
 @NgModule({
@@ -28,6 +29,7 @@ import { CurrentCustomerPaymentScheduleComponent } from './currentCustomerPaymen
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    Ng2SearchPipeModule,
     ToastrModule.forRoot(),
     NgxPaginationModule,
   ],

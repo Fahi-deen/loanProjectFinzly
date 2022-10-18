@@ -1,0 +1,48 @@
+2023-02-17 22:48:01,296 INFO  StartupInfoLogger:55 - [] Starting LoanSchedulerFinzlyApplication using Java 11.0.16 on Scarlett with PID 6464 (C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot\target\classes started by fahid in C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot)
+2023-02-17 22:48:01,301 DEBUG StartupInfoLogger:56 - [] Running with Spring Boot v2.7.4, Spring v5.3.23
+2023-02-17 22:48:01,301 INFO  SpringApplication:634 - [] No active profile set, falling back to 1 default profile: "default"
+2023-02-17 22:48:01,839 INFO  StartupInfoLogger:61 - [] Started LoanSchedulerFinzlyApplication in 0.567 seconds (JVM running for 1459.53)
+2023-02-17 22:48:15,885 INFO  StartupInfoLogger:55 - [] Starting LoanSchedulerFinzlyApplication using Java 11.0.16 on Scarlett with PID 6464 (C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot\target\classes started by fahid in C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot)
+2023-02-17 22:48:15,885 DEBUG StartupInfoLogger:56 - [] Running with Spring Boot v2.7.4, Spring v5.3.23
+2023-02-17 22:48:15,886 INFO  SpringApplication:634 - [] No active profile set, falling back to 1 default profile: "default"
+2023-02-17 22:48:16,408 INFO  StartupInfoLogger:61 - [] Started LoanSchedulerFinzlyApplication in 0.547 seconds (JVM running for 1474.098)
+2023-02-17 22:49:26,907 INFO  StartupInfoLogger:55 - [] Starting LoanSchedulerFinzlyApplication using Java 11.0.16 on Scarlett with PID 6464 (C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot\target\classes started by fahid in C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot)
+2023-02-17 22:49:26,907 DEBUG StartupInfoLogger:56 - [] Running with Spring Boot v2.7.4, Spring v5.3.23
+2023-02-17 22:49:26,907 INFO  SpringApplication:634 - [] No active profile set, falling back to 1 default profile: "default"
+2023-02-17 22:49:27,481 INFO  StartupInfoLogger:61 - [] Started LoanSchedulerFinzlyApplication in 0.598 seconds (JVM running for 1545.171)
+2023-02-17 22:50:50,967 INFO  StartupInfoLogger:55 - [] Starting LoanSchedulerFinzlyApplication using Java 11.0.16 on Scarlett with PID 6464 (C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot\target\classes started by fahid in C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot)
+2023-02-17 22:50:50,968 DEBUG StartupInfoLogger:56 - [] Running with Spring Boot v2.7.4, Spring v5.3.23
+2023-02-17 22:50:50,968 INFO  SpringApplication:634 - [] No active profile set, falling back to 1 default profile: "default"
+2023-02-17 22:50:51,513 INFO  StartupInfoLogger:61 - [] Started LoanSchedulerFinzlyApplication in 0.584 seconds (JVM running for 1629.203)
+2023-02-17 22:50:58,729 INFO  StartupInfoLogger:55 - [] Starting LoanSchedulerFinzlyApplication using Java 11.0.16 on Scarlett with PID 6464 (C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot\target\classes started by fahid in C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot)
+2023-02-17 22:50:58,730 DEBUG StartupInfoLogger:56 - [] Running with Spring Boot v2.7.4, Spring v5.3.23
+2023-02-17 22:50:58,730 INFO  SpringApplication:634 - [] No active profile set, falling back to 1 default profile: "default"
+2023-02-17 22:50:59,280 INFO  StartupInfoLogger:61 - [] Started LoanSchedulerFinzlyApplication in 0.593 seconds (JVM running for 1636.971)
+2023-02-17 22:51:10,202 INFO  StartupInfoLogger:55 - [] Starting LoanSchedulerFinzlyApplication using Java 11.0.16 on Scarlett with PID 6464 (C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot\target\classes started by fahid in C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot)
+2023-02-17 22:51:10,202 DEBUG StartupInfoLogger:56 - [] Running with Spring Boot v2.7.4, Spring v5.3.23
+2023-02-17 22:51:10,202 INFO  SpringApplication:634 - [] No active profile set, falling back to 1 default profile: "default"
+2023-02-17 22:51:10,726 INFO  StartupInfoLogger:61 - [] Started LoanSchedulerFinzlyApplication in 0.552 seconds (JVM running for 1648.416)
+2022-10-18 09:22:49,365 INFO  StartupInfoLogger:55 - [] Starting LoanSchedulerFinzlyApplicationTests using Java 11.0.16 on Scarlett with PID 10268 (started by fahid in C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot)
+2022-10-18 09:22:49,371 DEBUG StartupInfoLogger:56 - [] Running with Spring Boot v2.7.4, Spring v5.3.23
+2022-10-18 09:22:49,373 INFO  SpringApplication:634 - [] No active profile set, falling back to 1 default profile: "default"
+2022-10-18 09:22:57,033 INFO  StartupInfoLogger:61 - [] Started LoanSchedulerFinzlyApplicationTests in 8.121 seconds (JVM running for 10.686)
+2022-10-18 09:38:27,636 INFO  StartupInfoLogger:55 - [] Starting LoanSchedulerFinzlyApplication using Java 11.0.16 on Scarlett with PID 3464 (C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot\target\classes started by fahid in C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot)
+2022-10-18 09:38:27,640 DEBUG StartupInfoLogger:56 - [] Running with Spring Boot v2.7.4, Spring v5.3.23
+2022-10-18 09:38:27,642 INFO  SpringApplication:634 - [] No active profile set, falling back to 1 default profile: "default"
+2022-10-18 09:38:31,706 INFO  StartupInfoLogger:61 - [] Started LoanSchedulerFinzlyApplication in 4.683 seconds (JVM running for 5.772)
+2022-10-18 09:38:51,870 INFO  StartupInfoLogger:55 - [] Starting LoanSchedulerFinzlyApplication using Java 11.0.16 on Scarlett with PID 3464 (C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot\target\classes started by fahid in C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot)
+2022-10-18 09:38:51,870 DEBUG StartupInfoLogger:56 - [] Running with Spring Boot v2.7.4, Spring v5.3.23
+2022-10-18 09:38:51,871 INFO  SpringApplication:634 - [] No active profile set, falling back to 1 default profile: "default"
+2022-10-18 09:38:52,793 INFO  StartupInfoLogger:61 - [] Started LoanSchedulerFinzlyApplication in 1.012 seconds (JVM running for 26.856)
+2022-10-18 09:38:54,554 INFO  StartupInfoLogger:55 - [] Starting LoanSchedulerFinzlyApplication using Java 11.0.16 on Scarlett with PID 3464 (C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot\target\classes started by fahid in C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot)
+2022-10-18 09:38:54,555 DEBUG StartupInfoLogger:56 - [] Running with Spring Boot v2.7.4, Spring v5.3.23
+2022-10-18 09:38:54,555 INFO  SpringApplication:634 - [] No active profile set, falling back to 1 default profile: "default"
+2022-10-18 09:38:55,425 INFO  StartupInfoLogger:61 - [] Started LoanSchedulerFinzlyApplication in 0.905 seconds (JVM running for 29.487)
+2022-10-18 09:40:26,596 INFO  StartupInfoLogger:55 - [] Starting LoanSchedulerFinzlyApplication using Java 11.0.16 on Scarlett with PID 3464 (C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot\target\classes started by fahid in C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot)
+2022-10-18 09:40:26,596 DEBUG StartupInfoLogger:56 - [] Running with Spring Boot v2.7.4, Spring v5.3.23
+2022-10-18 09:40:26,597 INFO  SpringApplication:634 - [] No active profile set, falling back to 1 default profile: "default"
+2022-10-18 09:40:27,210 INFO  StartupInfoLogger:61 - [] Started LoanSchedulerFinzlyApplication in 0.651 seconds (JVM running for 121.256)
+2022-10-18 09:40:57,544 INFO  StartupInfoLogger:55 - [] Starting LoanSchedulerFinzlyApplication using Java 11.0.16 on Scarlett with PID 3464 (C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot\target\classes started by fahid in C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot)
+2022-10-18 09:40:57,545 DEBUG StartupInfoLogger:56 - [] Running with Spring Boot v2.7.4, Spring v5.3.23
+2022-10-18 09:40:57,545 INFO  SpringApplication:634 - [] No active profile set, falling back to 1 default profile: "default"
+2022-10-18 09:40:58,137 INFO  StartupInfoLogger:61 - [] Started LoanSchedulerFinzlyApplication in 0.638 seconds (JVM running for 152.177)

@@ -1,41 +1,48 @@
-<table class="table fluid-container">
-  <thead class="thead-dark">
-    <tr style="text-align: center">
-
-      <th scope="col">S.No</th>
-      <th scope="col">Customer ID</th>
-      <th scope="col">Customer Name</th>
-      <th scope="col">Loan Amount</th>
-      <th scope="col">Trade Date</th>
-      <th scope="col">Loan Start Date</th>
-      <th scope="col">Maturity Date</th>
-      <th scope="col">Payement Frequency</th>
-      <th scope="col">Payment Schedule</th>
-    </tr>
-  </thead>
-  <tbody style="border: 1px solid;">
-    <tr *ngFor=" let item of allLoanData|paginate:{itemsPerPage:10,currentPage:p};let i=index"
-      style="text-align: center">
-
-      <td>{{i+1}}</td>
-      <td>{{item.customerID}}</td>
-      <td>{{item.customerName}}</td>
-      <td>{{item.loanAmount | currency:'INR'}}</td>
-      <td>{{item.tradeDate| date: 'dd-MM-yyyy'}}</td>
-      <td>{{item.loanStartDate| date: 'dd-MM-yyyy'}}</td>
-      <td>{{item.maturityDate | date: 'dd-MM-yyyy'}}</td>
-      <td>{{item.paymentTerm.replace('_', ' ')| titlecase }}</td>
-      <td>
-        <button class="btn btn-info" (click)="currentPaymentDetails(item)">Click here</button>
-      </td>
-    </tr>
+<div>
+  <input type="search" [(ngModel)]="searchText" placeholder="Search here" style="float: right;">
 
 
-  </tbody>
-</table>
-<button (click)="onHomePage()" class="btn btn-success">Home Page</button>
-<div class="pageAlign">
+  <table class=" table fluid-container">
+    <thead class="thead-dark">
+      <tr style="text-align: center">
 
-  <pagination-controls (pageChange)=" p=$event">
-  </pagination-controls>
-</div>
+        <th scope="col">S.No</th>
+        <th scope="col">Customer ID</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Loan Amount</th>
+        <th scope="col">Trade Date</th>
+        <th scope="col">Loan Start Date</th>
+        <th scope="col">Maturity Date</th>
+        <th scope="col">Interest Percentage</th>
+        <th scope="col">Payement Frequency</th>
+        <th scope="col">Payment Schedule</th>
+      </tr>
+    </thead>
+    <tbody style="border: 1px solid;">
+      <tr *ngFor=" let item of allLoanData
+      |filter:searchText
+     |paginate:{itemsPerPage:10,currentPage:p}
+     ;let i=index" style="text-align: center">
+        <td>{{i+1}}</td>
+        <td>{{item.customerID}}</td>
+        <td>{{item.customerName}}</td>
+        <td>{{item.loanAmount | currency:'INR'}}</td>
+        <td>{{item.tradeDate| date: 'dd-MM-yyyy'}}</td>
+        <td>{{item.loanStartDate| date: 'dd-MM-yyyy'}}</td>
+        <td>{{item.maturityDate | date: 'dd-MM-yyyy'}}</td>
+        <td>{{item.interestRate}}%</td>
+        <td>{{item.paymentTerm.replace('_', ' ')| titlecase }}</td>
+        <td>
+          <button class="btn btn-info" (click)="currentPaymentDetails(item)">Click here</button>
+        </td>
+      </tr>
+
+
+    </tbody>
+  </table>
+  <button (click)="onHomePage()" class="btn btn-success">Home Page</button>
+  <div class="pageAlign">
+
+    <pagination-controls (pageChange)=" p=$event">
+    </pagination-controls>
+  </div>

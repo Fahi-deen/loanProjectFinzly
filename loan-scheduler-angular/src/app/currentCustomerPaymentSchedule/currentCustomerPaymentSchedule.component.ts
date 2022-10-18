@@ -11,7 +11,7 @@ import { CustomerService } from '../services/customer.service';
 })
 export class CurrentCustomerPaymentScheduleComponent implements OnInit {
   currentCustomerPaymentData: any = [];
-
+  searchText: any;
   p: number = 1;
   constructor(
     private router: Router,
@@ -43,12 +43,13 @@ export class CurrentCustomerPaymentScheduleComponent implements OnInit {
       confirmButtonText: 'Yes, Pay!',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.service.updatePaymentStatus(item).subscribe((res) => {});
-        Swal.fire('Sucess!', 'Your Payment is Accepted.', 'success').then(
-          (): any => {
-            window.location.reload();
-          }
-        );
+        this.service
+          .updatePaymentStatus(item.paymentID)
+          .subscribe((res: any) => {
+            Swal.fire('Sucess!', res.status, 'success').then((): any => {
+              window.location.reload();
+            });
+          });
       }
     });
   }

@@ -16,12 +16,10 @@ export class CustomerService {
     return this.http.get(`${this.baseUrl}allLoans`);
   }
   currentCustomerPaymentDetails(id: any) {
-    return this.http.get(`${this.baseUrl}current/${id}`);
+    return this.http.get(`${this.baseUrl}currentUserPayments/${id}`);
   }
 
-  updatePaymentStatus(payment: any) {
-    console.log(payment);
-
-    return this.http.put(`${this.baseUrl}updatePaymentStatus`, payment);
+  updatePaymentStatus(id: any) {
+    return this.http.put(`${this.baseUrl}updatePaymentStatus/${id}`, '');
   }
 }
