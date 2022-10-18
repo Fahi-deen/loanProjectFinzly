@@ -58,6 +58,7 @@ public class CustomerDetails {
 	private Integer paymentFrequency;
 	@NotNull
 	private Integer noOfMonths;
+	@NotNull
 	private Float interestRate;
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<PaymentSchedule> paymentSchedule;

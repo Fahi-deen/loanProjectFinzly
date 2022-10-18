@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,13 +23,13 @@ import com.loan.service.CustomerService;
 @RestController("/api")
 @CrossOrigin(origins = "http://localhost:4200/")
 public class CustomerController {
-
+   
 	@Autowired
 	private CustomerService customerService;
-
+        Logger logger = LoggerFactory.getLogger(CustomerController.class);
 	@PostMapping("/createloan")
 	public CustomerDetails createLoan(@Valid @RequestBody CustomerDetails customerDetails) {
-	
+
 		return customerService.createLoan(customerDetails);
 	}
 
@@ -36,18 +38,16 @@ public class CustomerController {
 		return customerService.displayAllLoans();
 	}
 
-	@GetMapping("/current/{id}")
+	@GetMapping("/currentUserPayments/{id}")
 	public List<PaymentSchedule> CurrentCustomerPaymentDetails(@PathVariable Long id) {
 		
 		return customerService.CurrentCustomerPaymentDetails(id);
 
 	}
 
-	@PutMapping("/updatePaymentStatus")
-	public HashMap<String, String> updatePaymentStatus(@RequestBody PaymentSchedule payment) {
-		customerService.updatePaymentStatus(payment);
-		HashMap<String, String> resultMap = new HashMap<>();
-		resultMap.put("Status", "Paid Successfully");
-		return resultMap;
+	@PutMapping("/updatePaymentStatus/{id}")
+	public HashMap<String, String> updatePaymentStatus(@PathVariable Long id) {
+		
+		return customerService.updatePaymentStatus(id);
 	}
 }

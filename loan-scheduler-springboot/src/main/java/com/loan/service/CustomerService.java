@@ -1,5 +1,6 @@
 package com.loan.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.loan.model.CustomerDetails;
@@ -11,8 +12,9 @@ public interface CustomerService {
 
 	List<CustomerDetails> displayAllLoans();
 
-	PaymentSchedule updatePaymentStatus(PaymentSchedule paidCustomer);
 
 	List<PaymentSchedule> CurrentCustomerPaymentDetails(Long id);
+
+	HashMap<String, String> updatePaymentStatus(Long id);
 
 }

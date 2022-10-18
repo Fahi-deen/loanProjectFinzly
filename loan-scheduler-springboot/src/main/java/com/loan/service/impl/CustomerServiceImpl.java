@@ -1,12 +1,10 @@
 package com.loan.service.impl;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.loan.enumeration.PaymentStatus;
 import com.loan.enumeration.PaymentTerm;
 import com.loan.exception.ResourceNotFoundException;
@@ -50,8 +48,7 @@ public class CustomerServiceImpl implements CustomerService {
 		} else {
 			customer.setPaymentSchedule(evenPaymentFrequencyCalculator(userDetails));
 		}
-	
-
+	    
 		return customerDetailsRepository.save(customer);
 
 	}
@@ -116,17 +113,20 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public List<CustomerDetails> displayAllLoans() {
 		List<CustomerDetails> allLoansData = customerDetailsRepository.findAll();
+
 		return allLoansData;
 	}
 
 	@Override
-	public PaymentSchedule updatePaymentStatus(PaymentSchedule paidCustomer) {
-		String errorMsg ="PaymentID "+ paidCustomer.getPaymentID()+" is not found";
-		PaymentSchedule foundPayment = paymentScheduleRepository.findById(paidCustomer.getPaymentID())
+	public HashMap<String, String> updatePaymentStatus(Long id) {
+		String errorMsg ="paymentID "+ id+" is not found";
+		PaymentSchedule foundPayment = paymentScheduleRepository.findById(id)
 				.orElseThrow(()->new ResourceNotFoundException(errorMsg));
 		foundPayment.setPaymentStatus(PaymentStatus.PAID);
-     
-		return paymentScheduleRepository.save(foundPayment);
+		 paymentScheduleRepository.save(foundPayment);
+		HashMap<String, String> resultMap = new HashMap<>();
+		 resultMap.put("status", "Paid Successfully");
+		return resultMap;
 
 	}
 
@@ -153,5 +153,7 @@ public class CustomerServiceImpl implements CustomerService {
 		paymentScheduleRepository.saveAll(currentPaymentList);
 		return currentPaymentList;
 	}
+
+	
 
 }
