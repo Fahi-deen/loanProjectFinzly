@@ -16,3 +16,11 @@
 .btn-info {
   border-radius: 18px;
 }
+
+.orderSelector {
+  width: 200px;
+  height: auto;
+  font-weight: bolder;
+  background: transparent;
+  border: 1px solid;
+}

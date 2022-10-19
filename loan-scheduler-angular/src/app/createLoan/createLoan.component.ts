@@ -35,10 +35,6 @@ export class CreateLoanComponent implements OnInit {
   submit() {
     this.formdata.customerName = this.formdata.customerName.trim();
 
-    console.log(this.formdata.loanStartDate);
-
-    console.log(this.formdata.maturityDate);
-
     this.service.createLoan(this.formdata).subscribe((data) => {
       this.toastr.success('Loan Created Sucessfully', '', {
         progressBar: true,

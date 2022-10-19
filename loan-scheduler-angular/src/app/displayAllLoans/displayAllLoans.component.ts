@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CustomerService } from '../services/customer.service';
-
 @Component({
   selector: 'app-displayAllLoans',
   templateUrl: './displayAllLoans.component.html',
@@ -14,6 +13,7 @@ export class DisplayAllLoansComponent implements OnInit {
 
     private router: Router
   ) {}
+  orderSelecter: any = 'asc';
   searchText: any;
   allLoanData: any;
   currentPaymentScheduleData: any = [];

@@ -1,30 +1,38 @@
-<input type="search" [(ngModel)]="searchText" placeholder="Search here" style="float: right;">
-<table class="table ">
-  <thead class="thead-dark">
-    <tr style="text-align: center">
-      <th scope="col">S.No</th>
-      <th scope="col">Customer Name</th>
-      <th scope="col">Payment ID</th>
-      <th scope="col">Principal Amount</th>
-      <th scope="col">Projected Interest</th>
-      <th scope="col">Payment Date</th>
-      <th scope="col">Payement Status</th>
-      <th scope="col">Amount to be Paid</th>
-      <th scope="col">Payment Button</th>
+<div>
+  <input type="search" [(ngModel)]="searchText" placeholder="Search here" style="float: right;">
 
-    </tr>
-  </thead>
-  <tbody style="border: 1px solid;">
-    <tr *ngFor=" let item of currentCustomerPaymentData
+
+  <select type="number" [(ngModel)]="orderSelecter" class="form-control" required class="orderSelector">
+    <option value="asc" selected>Ascending order by id</option>
+    <option value="desc" selected>Decending order by id</option>
+  </select>
+  <table class="table ">
+    <thead class="thead-dark">
+      <tr style="text-align: center">
+        <th scope="col">S.No</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Payment ID</th>
+        <th scope="col">Principal Amount</th>
+        <th scope="col">Projected Interest</th>
+        <th scope="col">Payment Date</th>
+        <th scope="col">Payement Status</th>
+        <th scope="col">Amount to be Paid</th>
+        <th scope="col">Payment Button</th>
+
+      </tr>
+    </thead>
+    <tbody style="border: 1px solid;">
+      <tr *ngFor=" let item of currentCustomerPaymentData
     |filter:searchText
+    |orderBy:'paymentID' :orderSelecter
     |paginate:{itemsPerPage:12,currentPage:p};let i=index" style="text-align: center">
-      <td>{{i+1}}</td>
-      <td>{{item.customerName}}</td>
-      <td>{{item.paymentID}}</td>
-      <td>{{item.principalAmount | currency:'INR'}}</td>
-      <td>{{item.projectedInterest |currency:'INR'}}</td>
-      <td>{{item.paymentDate | date: 'dd-MM-yyyy'}}</td>
-      <td style="text-align: center;"><span [ngClass]="{
+        <td>{{i+1}}</td>
+        <td>{{item.customerName}}</td>
+        <td>{{item.paymentID}}</td>
+        <td>{{item.principalAmount | currency:'INR'}}</td>
+        <td>{{item.projectedInterest |currency:'INR'}}</td>
+        <td>{{item.paymentDate | date: 'dd-MM-yyyy'}}</td>
+        <td style="text-align: center;"><span [ngClass]="{
           'badge':true,
           'badge-pill':true,
           'badge-success':item.paymentStatus==='PAID',
@@ -32,29 +40,29 @@
           'badge-warning':item.paymentStatus==='PROJECTED'
         }" style="padding: 8px;">{{item.paymentStatus}}</span></td>
 
-      <td>{{item.paymentAmount | currency:'INR'}}</td>
+        <td>{{item.paymentAmount | currency:'INR'}}</td>
 
-      <td>
-        <button [ngClass]="{
+        <td>
+          <button [ngClass]="{
           'btn':true,
           'badge-success':item.paymentStatus==='PAID',
           'badge-danger':item.paymentStatus==='AWAITINGPAYMENT',
           'badge-info':item.paymentStatus==='PROJECTED'
         }" (click)="onConfirmPaid(item)" [disabled]="!(item.paymentStatus === 'AWAITINGPAYMENT')">
 
-          <span [hidden]="!(item.paymentStatus === 'PROJECTED')">Pay</span>
-          <span [hidden]="!(item.paymentStatus === 'AWAITINGPAYMENT')">Pay</span>
-          <span [hidden]="!((item.paymentStatus === 'PAID')) " style="font-weight: bold;
+            <span [hidden]="!(item.paymentStatus === 'PROJECTED')">Pay</span>
+            <span [hidden]="!(item.paymentStatus === 'AWAITINGPAYMENT')">Pay</span>
+            <span [hidden]="!((item.paymentStatus === 'PAID')) " style="font-weight: bold;
           color:black"><i class='fa fa-check-circle' style='color:green; font-size: larger;'></i> Paid
-            Sucessfully</span>
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<button (click)="onGoBack()" class="btn btn-info">Go Back</button>
-<div class="pageAlign">
+              Sucessfully</span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button (click)="onGoBack()" class="btn btn-info">Go Back</button>
+  <div class="pageAlign">
 
-  <pagination-controls (pageChange)=" p=$event">
-  </pagination-controls>
-</div>
+    <pagination-controls (pageChange)=" p=$event">
+    </pagination-controls>
+  </div>

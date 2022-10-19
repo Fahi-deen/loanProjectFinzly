@@ -12,6 +12,7 @@ import { CustomerService } from '../services/customer.service';
 export class CurrentCustomerPaymentScheduleComponent implements OnInit {
   currentCustomerPaymentData: any = [];
   searchText: any;
+  orderSelecter: any = 'asc';
   p: number = 1;
   constructor(
     private router: Router,
@@ -23,6 +24,7 @@ export class CurrentCustomerPaymentScheduleComponent implements OnInit {
     document.body.className = 'sandal_bg';
     this.displayCurrentDetails();
   }
+
   displayCurrentDetails() {
     this.route.paramMap.subscribe((param: ParamMap) => {
       this.service
