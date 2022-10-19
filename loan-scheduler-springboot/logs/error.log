@@ -1,8 +1,6 @@
-2022-10-17 22:26:53,143 ERROR SpringApplication:824 - [] Application run failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name '/api' defined in file [C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot\target\classes\com\loan\controller\CustomerController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.loan.controller.CustomerController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
-	Syntax error, insert "}" to complete ClassBody
-	Syntax error, insert "... VariableDeclaratorId" to complete FormalParameterList
-	Syntax error on token "}", delete this token
+2022-10-19 09:11:22,919 ERROR SpringApplication:824 - [] Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name '/api' defined in file [C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot\target\classes\com\loan\controller\CustomerController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.loan.controller.CustomerController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problem: 
+	Syntax error on token "public", delete this token
 
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1334)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232)
@@ -27,32 +25,26 @@ org.springframework.beans.factory.BeanCreationException: Error creating bean wit
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.loan.controller.CustomerController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
-	Syntax error, insert "}" to complete ClassBody
-	Syntax error, insert "... VariableDeclaratorId" to complete FormalParameterList
-	Syntax error on token "}", delete this token
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.loan.controller.CustomerController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problem: 
+	Syntax error on token "public", delete this token
 
 	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:224)
 	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1326)
 	... 22 common frames omitted
-Caused by: java.lang.Error: Unresolved compilation problems: 
-	Syntax error, insert "}" to complete ClassBody
-	Syntax error, insert "... VariableDeclaratorId" to complete FormalParameterList
-	Syntax error on token "}", delete this token
+Caused by: java.lang.Error: Unresolved compilation problem: 
+	Syntax error on token "public", delete this token
 
-	at com.loan.controller.CustomerController.<init>(CustomerController.java:46)
+	at com.loan.controller.CustomerController.<init>(CustomerController.java:38)
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
 	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:211)
 	... 24 common frames omitted
-2022-10-17 22:27:00,467 ERROR SpringApplication:824 - [] Application run failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name '/api' defined in file [C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot\target\classes\com\loan\controller\CustomerController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.loan.controller.CustomerController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
-	Syntax error, insert "}" to complete ClassBody
-	Syntax error, insert "Type VariableDeclaratorId" to complete FormalParameterList
-	Syntax error on token "}", delete this token
+2022-10-19 09:11:25,650 ERROR SpringApplication:824 - [] Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name '/api' defined in file [C:\Users\fahid\OneDrive\Desktop\Github\loanProjectFinzly\loan-scheduler-springboot\target\classes\com\loan\controller\CustomerController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.loan.controller.CustomerController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problem: 
+	Syntax error on token "public", delete this token
 
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1334)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232)
@@ -77,21 +69,17 @@ org.springframework.beans.factory.BeanCreationException: Error creating bean wit
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.loan.controller.CustomerController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
-	Syntax error, insert "}" to complete ClassBody
-	Syntax error, insert "Type VariableDeclaratorId" to complete FormalParameterList
-	Syntax error on token "}", delete this token
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.loan.controller.CustomerController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problem: 
+	Syntax error on token "public", delete this token
 
 	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:224)
 	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1326)
 	... 22 common frames omitted
-Caused by: java.lang.Error: Unresolved compilation problems: 
-	Syntax error, insert "}" to complete ClassBody
-	Syntax error, insert "Type VariableDeclaratorId" to complete FormalParameterList
-	Syntax error on token "}", delete this token
+Caused by: java.lang.Error: Unresolved compilation problem: 
+	Syntax error on token "public", delete this token
 
-	at com.loan.controller.CustomerController.<init>(CustomerController.java:46)
+	at com.loan.controller.CustomerController.<init>(CustomerController.java:38)
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)

@@ -29,11 +29,12 @@ public class CustomerController {
         Logger logger = LoggerFactory.getLogger(CustomerController.class);
 	@PostMapping("/createloan")
 	public CustomerDetails createLoan(@Valid @RequestBody CustomerDetails customerDetails) {
-
-		return customerService.createLoan(customerDetails);
+ 
+       return customerService.createLoan(customerDetails);
 	}
 
 	@GetMapping("/allLoans")
+	
 	public List<CustomerDetails> displayAllLoans() {
 		return customerService.displayAllLoans();
 	}

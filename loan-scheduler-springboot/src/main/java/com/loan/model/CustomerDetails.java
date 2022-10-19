@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -19,6 +20,7 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.lang.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.loan.enumeration.PaymentTerm;
@@ -35,7 +37,13 @@ import lombok.NoArgsConstructor;
 @Table(name = "customer_details")
 public class CustomerDetails {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,
+	generator = "customer_details_generator")
+	@SequenceGenerator(
+			name="customer_details_generator",
+			sequenceName = "customer_details_sequence",
+			allocationSize = 1
+			)
 	private Long customerID;
 	@NotEmpty
 	@Pattern(regexp = "^[a-zA-Z]{4,32}(?: [a-zA-Z]+){0,}$", message = "Invalid Customer Name.."
@@ -48,7 +56,7 @@ public class CustomerDetails {
 	private Date tradeDate;
 	@NotNull
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	private LocalDate loanStartDate;
+	private LocalDate   loanStartDate;
 
 	private LocalDate maturityDate;
 	@Enumerated(EnumType.STRING)
@@ -57,6 +65,7 @@ public class CustomerDetails {
 	@NotNull
 	private Integer paymentFrequency;
 	@NotNull
+	@Range(min = 12, message = "minimum loan months is 12")
 	private Integer noOfMonths;
 	@NotNull
 	private Float interestRate;
