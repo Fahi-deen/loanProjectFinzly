@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.loan.enumeration.PaymentStatus;
 import com.loan.enumeration.PaymentTerm;
+import com.loan.exception.ResourceNotFoundException;
 import com.loan.model.CustomerDetails;
 import com.loan.model.PaymentSchedule;
 import com.loan.repository.CustomerDetailsRepository;
@@ -26,29 +27,30 @@ public class CustomerServiceImpl implements CustomerService {
 	public CustomerDetails createLoan(CustomerDetails userDetails) {
 		CustomerDetails customer = new CustomerDetails();
 
-		String customerName = userDetails.getCustomerName().trim();
+		String customerName = userDetails.getCustomerName();
+		
 		Float customerLoanAmount = userDetails.getLoanAmount();
 		LocalDate customerLoanStartDate = userDetails.getLoanStartDate();
 		PaymentTerm paymentTerm = userDetails.getPaymentTerm();
-		LocalDate customerMaturityDate = userDetails.getMaturityDate();
+		LocalDate customerMaturityDate=userDetails.getLoanStartDate().plusMonths(userDetails.getNoOfMonths());
 		Integer customerPaymentFrequency = userDetails.getPaymentFrequency();
 		Float customerInterestRate = userDetails.getInterestRate();
-
+		
+		customer.setMaturityDate(customerMaturityDate);
 		customer.setCustomerName(customerName);
 		customer.setLoanAmount(customerLoanAmount);
 		customer.setLoanStartDate(customerLoanStartDate);
-		customer.setMaturityDate(customerMaturityDate);
+		customer.setNoOfMonths(userDetails.getNoOfMonths());
 		customer.setPaymentTerm(paymentTerm);
 		customer.setPaymentFrequency(customerPaymentFrequency);
 		customer.setInterestRate(customerInterestRate);
 
 		if (userDetails.getPaymentTerm().equals(PaymentTerm.INTEREST_ONLY)) {
-			customer.setPaymentSchedule(interestOnlyPaymentCalculator(customer));
+			customer.setPaymentSchedule(interestOnlyPaymentCalculator(userDetails));
 		} else {
-			List<PaymentSchedule> paymentlistCalculated = evenPaymentFrequencyCalculator(customer);
-			customer.setPaymentSchedule(paymentlistCalculated);
+			customer.setPaymentSchedule(evenPaymentFrequencyCalculator(userDetails));
 		}
-		
+	
 
 		return customerDetailsRepository.save(customer);
 
@@ -57,15 +59,16 @@ public class CustomerServiceImpl implements CustomerService {
 	private List<PaymentSchedule> interestOnlyPaymentCalculator(CustomerDetails customer) {
 		List<PaymentSchedule> paymentList = new ArrayList<>();
 		float principalAmount = customer.getLoanAmount();
-		int noOfMonths = (customer.getMaturityDate().getYear() - customer.getLoanStartDate().getYear()) * 12;
+		int noOfMonths = customer.getNoOfMonths();
 		int installment = (noOfMonths / customer.getPaymentFrequency());
 		float rate = customer.getInterestRate();
 		LocalDate paymentDate = null;
-
-		PaymentStatus paymentStatus;
-		float projectedInterest = ((principalAmount * rate) / 100) / 12;
+          
+		PaymentStatus paymentStatus=PaymentStatus.PROJECTED;
+		float interestRate=rate /100;
+		float perMonthInterest = (principalAmount *interestRate)  ;
+		float projectedInterest=perMonthInterest * customer.getPaymentFrequency();
 		for (int i = 0; i < installment; i++) {
-			paymentStatus = PaymentStatus.PROJECTED;
 			if (i == 0) {
 				paymentDate = customer.getLoanStartDate().plusMonths(customer.getPaymentFrequency());
 			} else
@@ -82,7 +85,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	private List<PaymentSchedule> evenPaymentFrequencyCalculator(CustomerDetails customer) {
 		List<PaymentSchedule> paymentList = new ArrayList<>();
-		int noOfMonths = (customer.getMaturityDate().getYear() - customer.getLoanStartDate().getYear()) * 12;
+		int noOfMonths = customer.getNoOfMonths();
 		float numberOfYears = noOfMonths / 12;
 		int installment = (noOfMonths / customer.getPaymentFrequency());
 		float principalAmount = customer.getLoanAmount();
@@ -118,16 +121,20 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public PaymentSchedule updatePaymentStatus(PaymentSchedule paidCustomer) {
-		PaymentSchedule foundPayment = paymentScheduleRepository.findById(paidCustomer.getPaymentID()).get();
-
+		String errorMsg ="PaymentID "+ paidCustomer.getPaymentID()+" is not found";
+		PaymentSchedule foundPayment = paymentScheduleRepository.findById(paidCustomer.getPaymentID())
+				.orElseThrow(()->new ResourceNotFoundException(errorMsg));
 		foundPayment.setPaymentStatus(PaymentStatus.PAID);
+     
 		return paymentScheduleRepository.save(foundPayment);
 
 	}
 
 	@Override
 	public List<PaymentSchedule> CurrentCustomerPaymentDetails(Long id) {
-		CustomerDetails currentCustomerList = customerDetailsRepository.findById(id).get();
+		String errorMsg ="Customer with ID "+id+" is not found";
+		CustomerDetails currentCustomerList = customerDetailsRepository.findById(id)
+				.orElseThrow(()->new ResourceNotFoundException(errorMsg));
 		return checkCurrentPaymentDay(currentCustomerList.getPaymentSchedule());
 	}
 

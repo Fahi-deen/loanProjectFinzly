@@ -27,6 +27,7 @@ public class CustomerController {
 
 	@PostMapping("/createloan")
 	public CustomerDetails createLoan(@Valid @RequestBody CustomerDetails customerDetails) {
+	
 		return customerService.createLoan(customerDetails);
 	}
 
@@ -37,6 +38,7 @@ public class CustomerController {
 
 	@GetMapping("/current/{id}")
 	public List<PaymentSchedule> CurrentCustomerPaymentDetails(@PathVariable Long id) {
+		
 		return customerService.CurrentCustomerPaymentDetails(id);
 
 	}

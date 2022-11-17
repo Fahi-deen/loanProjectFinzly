@@ -37,9 +37,9 @@ public class CustomerDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long customerID;
-	@Pattern(regexp = "^[a-zA-Z]{4,}(?: [a-zA-Z]+){0,}$", message = "Invalid Customer Name.."
-			+ " Enter only Letters and Spaces and minimum length should 4..." + "name must end with space")
 	@NotEmpty
+	@Pattern(regexp = "^[a-zA-Z]{4,32}(?: [a-zA-Z]+){0,}$", message = "Invalid Customer Name.."
+			+ " Enter only Letters and Spaces and minimum length should 4..." + "name must not end with space")
 	private String customerName;
 	@NotNull
 	@Range(min = 1, message = "length must be above 0")
@@ -49,7 +49,7 @@ public class CustomerDetails {
 	@NotNull
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate loanStartDate;
-	@NotNull
+
 	private LocalDate maturityDate;
 	@Enumerated(EnumType.STRING)
 	@NotNull
@@ -57,6 +57,7 @@ public class CustomerDetails {
 	@NotNull
 	private Integer paymentFrequency;
 	@NotNull
+	private Integer noOfMonths;
 	private Float interestRate;
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<PaymentSchedule> paymentSchedule;
