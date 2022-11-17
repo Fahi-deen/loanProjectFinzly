@@ -24,6 +24,8 @@ export class CreateLoanComponent implements OnInit {
     return new Date().toISOString().split('T')[0];
   }
   ngOnInit() {
+    console.log(new Date(new Date().setMonth(new Date().getMonth() + 12)));
+
     // document.body.style.backgroundColor = '#87CEFA';
     document.body.className = 'sandal_bg';
   }
@@ -32,9 +34,8 @@ export class CreateLoanComponent implements OnInit {
   }
   submit() {
     this.formdata.customerName = this.formdata.customerName.trim();
-    this.formdata.maturityDate = new Date(
-      new Date().setMonth(new Date().getMonth() + this.formdata.noOfMonths)
-    );
+
+    console.log(this.formdata.loanStartDate);
 
     console.log(this.formdata.maturityDate);
 

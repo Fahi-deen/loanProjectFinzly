@@ -3,6 +3,7 @@
     <tr style="text-align: center">
 
       <th scope="col">S.No</th>
+      <th scope="col">Customer ID</th>
       <th scope="col">Customer Name</th>
       <th scope="col">Loan Amount</th>
       <th scope="col">Trade Date</th>
@@ -17,6 +18,7 @@
       style="text-align: center">
 
       <td>{{i+1}}</td>
+      <td>{{item.customerID}}</td>
       <td>{{item.customerName}}</td>
       <td>{{item.loanAmount | currency:'INR'}}</td>
       <td>{{item.tradeDate| date: 'dd-MM-yyyy'}}</td>
